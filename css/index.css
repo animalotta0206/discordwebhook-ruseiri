@@ -1,0 +1,19 @@
+/* ゲームボードのスタイルを設定するCSS */
+#board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
