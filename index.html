@@ -12,6 +12,11 @@
             var avatarUrl = form.avatar_url.value;
             var message = form.content.value;
 
+            // フォームの値をローカルストレージに保存
+            localStorage.setItem("username", username);
+            localStorage.setItem("avatarUrl", avatarUrl);
+            localStorage.setItem("message", message);
+
             // Discordへのメッセージ送信処理
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "https://discord.com/api/webhooks/1123837961197326397/Iv7KMPdULqs53q-135MB9bosfbsDd6oLJUnL67DEMHgndlSyDreM2XUPAoZcmqhJt-FX");
