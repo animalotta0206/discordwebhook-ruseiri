@@ -42,6 +42,19 @@
                 }
             };
         }
+
+        function resetData() {
+            // ローカルストレージから保存したデータを削除
+            localStorage.removeItem("username");
+            localStorage.removeItem("avatarUrl");
+            localStorage.removeItem("message");
+
+            // フォームの値をデフォルトに戻す
+            var form = document.getElementById("myForm");
+            form.username.value = "ルセイリくん";
+            form.avatar_url.value = "https://cdn.discordapp.com/attachments/1114539965112664154/1123961060953690212/74_20230629215934.png";
+            form.content.value = "";
+}
     </script>
 </head>
 <body>
@@ -56,7 +69,7 @@
         <input type="text" name="avatar_url" value="https://cdn.discordapp.com/attachments/1114539965112664154/1123961060953690212/74_20230629215934.png">
         <p>送信するメッセージ</p>
         <textarea name="content" placeholder="メッセージ内容" cols="40" rows="8" required></textarea>
-        <p><input type="submit" value="送信" onclick="submitForm(event)"></p>
+        <p><input type="submit" value="送信" onclick="submitForm(event)"> <button onclick="resetData()">データをリセット</button> </p>
     </form>
 
     <div id="message"></div>
