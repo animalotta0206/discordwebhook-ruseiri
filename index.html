@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bingo Game</title>
-  <style>
-    /* ゲームボードのスタイルを設定するCSS */
-  </style>
+    <title>Discord Webhook</title>
 </head>
 <body>
-  <h1>Bingo Game</h1>
-  <div id="board">
-    <!-- ビンゴゲームのボードを表示するための要素 -->
-  </div>
-  <button onclick="startGame()">Start</button>
-  <script src="script.js"></script>
+    <h2>ルセイリ君web hook</h2>
+    <p>りくちを絶倫させることができます(？)</p>
+    <h3>使い方</h3>
+    <p>・メッセージを入力し、送信ボタンを押すだけで送信できます。</p>
+    <form id="myForm" method="post" action="https://discord.com/api/webhooks/1123837961197326397/Iv7KMPdULqs53q-135MB9bosfbsDd6oLJUnL67DEMHgndlSyDreM2XUPAoZcmqhJt-FX">
+	 <p>Discord上での表示名(このフィールドは任意)</p>
+	 <input type="text" name="username" value="ルセイリくん">
+	 <p>アバターURL(このフィールドは任意)</p>
+	 <input type="text" name="avatar_url" value="https://cdn.discordapp.com/attachments/992091661519827074/1123854078892589076/ruseiri.png">
+	 <p>送信するメッセージ</p>
+        <textarea name="content" placeholder="メッセージ内容" cols="40" rows="8" required></textarea>
+        <p><input type="submit" value="送信"></p>
+    </form>
+
 </body>
 </html>
