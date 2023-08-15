@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>激エロドラゴン翻訳係 |#ケモセーフ（？）</title>
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // フォームのデフォルトの送信動作をキャンセル
+
+            // フォームの値を取得
+            var form = document.getElementById("myForm");
+            var username = form.username.value;
+            var avatarUrl = form.avatar_url.value;
+            var message = form.content.value;
+
+            // フォームの値をローカルストレージに保存
+            localStorage.setItem("username", username);
+            localStorage.setItem("avatarUrl", avatarUrl);
+            localStorage.setItem("message", message);
+
+            // Discordへのメッセージ送信処理
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://discord.com/api/webhooks/1123837961197326397/Iv7KMPdULqs53q-135MB9bosfbsDd6oLJUnL67DEMHgndlSyDreM2XUPAoZcmqhJt-FX");
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            var payload = {
+                username: username,
+                avatar_url: avatarUrl,
+                content: message
+            };
+
+            xhr.send(JSON.stringify(payload));
+
+            // 送信完了時の処理
+            xhr.onload = function() {
+                if (xhr.status === 204) {
+                    // メッセージ送信成功時の処理
+                    alert("メッセージが送信されました！");
+                    form.reset(); // フォームのリセット
+                } else {
+                    // メッセージ送信失敗時の処理
+                    alert("メッセージの送信に失敗しました。もう一度試してください。");
+                }
+            };
+        }
+
+        function resetData() {
+            // ローカルストレージから保存したデータを削除
+            localStorage.removeItem("username");
+            localStorage.removeItem("avatarUrl");
+            localStorage.removeItem("message");
+
+            // フォームの値をデフォルトに戻す
+            var form = document.getElementById("myForm");
+            form.username.value = "ルセイリくん";
+            form.avatar_url.value = "https://cdn.discordapp.com/attachments/1114539965112664154/1123961060953690212/74_20230629215934.png";
+            form.content.value = "";
+
+            alert("フィールドデータをリセットしました。");
+}
+    </script>
+</head>
+<body>
+    <h2>激エロドラゴン翻訳係</h2>
+    <form id="myForm">
+        <p>Discord上での表示名(このフィールドは任意)</p>
+        <input type="text" name="username" value="激エロドラゴン翻訳係">
+        <p>アバターURL(このフィールドは任意)</p>
+        <input type="text" name="avatar_url" value="https://cdn.discordapp.com/attachments/1114138889507065896/1114139731391950928/VideoCapture_20230602-181710.jpg">
+        <p>送信するメッセージ</p>
+        <textarea name="content" placeholder="メッセージ内容" cols="40" rows="8" required></textarea>
+        <p><input type="submit" value="送信" onclick="submitForm(event)"></p>
+    </form>
+
+    <button onclick="resetData()">データをリセット</button>
+    <div id="message"></div>
+</body>
+</html>
