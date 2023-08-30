@@ -36,9 +36,11 @@
                     // メッセージ送信成功時の処理
                     alert("メッセージが送信されました！");
                     form.reset(); // フォームのリセット
-                } else if (xhr.status === 429 || xhr.status === 401 || xhr.status === 403){
+                } else if (xhr.status === 429 || xhr.status === 403){
                     // メッセージ送信失敗時の処理
                     alert("error:"+ xhr.status +"\nDiscord API Rate Limit\nこの制限は10分間有効です。");
+                } else if (xhr.status === 401) {
+                    alert("error:"+ xhr.status +"TOKEN error\n使用中のwebhookトークンが管理者により無効化されました。")
                 } else{
                     alert("error:"+ xhr.status +"エラーが発生しました。もう一度試してください。");
                 }
