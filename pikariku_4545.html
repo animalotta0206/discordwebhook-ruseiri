@@ -19,7 +19,7 @@
 
             // Discordへのメッセージ送信処理
             var xhr = new XMLHttpRequest();
-            xhr.open("POST","https://discord.com/api/webhooks/1146316262213959731/A_FuDZTMRrE0pnk1rpNqZ3hf4CBURQkWAQeKy7pWLivF3SK9i4BQrWLfkdtgUALiPyf");
+            xhr.open("POST","https://discord.com/api/webhooks/1146316262213959731/A_FuDZTMRrE0pnk1rpNqZ3hf4CBURQkWAQeKy7pWLivF3SK9i4BQrWLfkdtgUALiPyfU");
             xhr.setRequestHeader("Content-Type", "application/json");
 
             var payload = {
@@ -40,7 +40,7 @@
                     // メッセージ送信失敗時の処理
                     alert("error:"+ xhr.status +"\nDiscord API Rate Limit\nこの制限は10分間有効です。");
                 } else if (xhr.status === 401) {
-                    alert("error:"+ xhr.status +"TOKEN error\n使用中のwebhookトークンが管理者により無効化されました。")
+                    alert("error:"+ xhr.status +"\nTOKEN error\n使用中のwebhookトークンが管理者により無効化されました。\n管理者にお問い合わせください。")
                 } else{
                     alert("error:"+ xhr.status +"エラーが発生しました。もう一度試してください。");
                 }
