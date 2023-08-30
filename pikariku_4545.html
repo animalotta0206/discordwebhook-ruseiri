@@ -4,10 +4,11 @@
     <title>おかず報告botちゃん |#ケモセーフ（？）</title>
     <script>
         function submitForm(event) {
-            event.preventDefault(); // フォームのデフォルトの送信動作をキャンセル
-
+            event.preventDefault(); 
+            
             // フォームの値を取得
             var form = document.getElementById("myForm");
+            form.style.pointerEvents = "none";
             var username = form.username.value;
             var avatarUrl = form.avatar_url.value;
             var message = form.content.value;
@@ -44,6 +45,7 @@
                 } else{
                     alert("error:"+ xhr.status +"エラーが発生しました。もう一度試してください。");
                 }
+            form.style.pointerEvents = "auto";
             };
         }
 
