@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>おかず報告botちゃん |#ケモセーフ（？）</title>
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); 
+            
+            // フォームの値を取得
+            var form = document.getElementById("myForm");
+            form.style.pointerEvents = "none";
+            var username = form.username.value;
+            var avatarUrl = form.avatar_url.value;
+            var message = form.content.value;
+
+            // フォームの値をローカルストレージに保存
+            localStorage.setItem("username", username);
+            localStorage.setItem("avatarUrl", avatarUrl);
+            localStorage.setItem("message", message);
+
+            // Discordへのメッセージ送信処理
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST","https://discord.com/api/webhooks/1146316262213959731/A_FuDZTMRrE0pnk1rpNqZ3hf4CBURQkWAQeKy7pWLivF3SK9i4BQrWLfkdtgUALiPyfU");
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            var payload = {
+                username: username,
+                avatar_url: avatarUrl,
+                content: message
+            };
+
+            xhr.send(JSON.stringify(payload));
+
+            // 送信完了時の処理
+            xhr.onload = function() {
+                if (xhr.status === 204) {
+                    // メッセージ送信成功時の処理
+                    alert("メッセージが送信されました！");
+                    form.reset(); // フォームのリセット
+                } else if (xhr.status === 429 || xhr.status === 403){
+                    // メッセージ送信失敗時の処理
+                    alert("error:"+ xhr.status +"\nDiscord API Rate Limit\nこの制限は10分間有効です。");
+                } else if (xhr.status === 401) {
+                    alert("error:"+ xhr.status +"\nTOKEN error\n使用中のwebhookトークンが管理者により無効化されました。\n管理者にお問い合わせください。")
+                } else{
+                    alert("error:"+ xhr.status +"エラーが発生しました。もう一度試してください。");
+                }
+            form.style.pointerEvents = "auto";
+            };
+        }
+
+        function resetData() {
+            // ローカルストレージから保存したデータを削除
+            localStorage.removeItem("username");
+            localStorage.removeItem("avatarUrl");
+            localStorage.removeItem("message");
+
+            // フォームの値をデフォルトに戻す
+            var form = document.getElementById("myForm");
+            form.username.value = "ルセイリくん";
+            form.avatar_url.value = "https://cdn.discordapp.com/attachments/1114539965112664154/1123961060953690212/74_20230629215934.png";
+            form.content.value = "";
+
+            alert("フィールドデータをリセットしました。");
+}
+    </script>
+</head>
+<body>
+    <h2>おかず報告botちゃん</h2>
+    <form id="myForm">
+        <p>Discord上での表示名(このフィールドは任意)</p>
+        <input type="text" name="username" value="おかず報告botちゃん">
+        <p>アバターURL(このフィールドは任意)</p>
+        <input type="text" name="avatar_url" value="https://cdn.discordapp.com/attachments/992091661519827074/1146317740446068756/g3-L4MM0_400x400.jpg">
+        <p>送信するメッセージ</p>
+        <textarea name="content" placeholder="メッセージ内容" cols="40" rows="8" required></textarea>
+        <p><input type="submit" value="送信" onclick="submitForm(event)"></p>
+    </form>
+
+    <button onclick="resetData()">データをリセット</button>
+    <div id="message"></div>
+</body>
+</html>
