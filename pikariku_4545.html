@@ -34,8 +34,6 @@
             // 送信完了時の処理
             xhr.onload = function() {
                 if (xhr.status === 204) {
-                    // メッセージ送信成功時の処理
-                    alert("メッセージが送信されました！");
                     form.reset(); // フォームのリセット
                 } else if (xhr.status === 429 || xhr.status === 403){
                     // メッセージ送信失敗時の処理
